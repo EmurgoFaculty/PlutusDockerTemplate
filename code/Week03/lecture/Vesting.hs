@@ -13,9 +13,9 @@ import           Plutus.V2.Ledger.Api      (BuiltinData, POSIXTime, PubKeyHash,
                                             Validator, from, mkValidatorScript)
 import           Plutus.V2.Ledger.Contexts (txSignedBy)
 import           PlutusTx                  (compile, unstableMakeIsData)
-import           PlutusTx.Prelude          (Bool, traceIfFalse, ($), (&&))
+import           PlutusTx.Prelude          (Bool, traceIfFalse, ($), (&&), error, (==), otherwise)
 import           Prelude                   (IO, String)
-)import           Utilities                 (Network, posixTimeFromIso8601,
+import           Utilities                 (Network, posixTimeFromIso8601,
                                             printDataToJSON,
                                             validatorAddressBech32, wrap,
                                             writeValidatorToFile)
@@ -60,7 +60,7 @@ validator :: Validator
 validator = mkValidatorScript $$(compile [|| mkWrappedVestingValidator ||])
 
 tbsValidator :: Validator
-tbsValidator :: mkValidatorScript $$(compile [|| tbsTest ||])
+tbsValidator = mkValidatorScript $$(compile [|| tbsTest ||])
 ---------------------------------------------------------------------------------------------------
 ------------------------------------- HELPER FUNCTIONS --------------------------------------------
 
