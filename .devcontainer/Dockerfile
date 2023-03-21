@@ -125,7 +125,7 @@ RUN npm --version
 
 FROM nodejs as plutus
 
-RUN git clone https://github.com/input-output-hk/plutus-pioneer-program
+RUN git clone https://github.com/vortecsmaster/dockertemplate
 RUN cd plutus-pioneer-program/code && cabal update
 RUN cd plutus-pioneer-program/code && cabal build all
 
